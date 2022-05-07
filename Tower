@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using vi = vector<int>;
+#define pb push_back
+#define sz(x) (int)(x).size()
+
+int n;
+vi x; // stores towers in non-decreasing order
+
+int main() {
+	ios_base::sync_with_stdio(0); cin.tie(0);
+	cin >> n; //number of tower
+	for (int i = 0; i < n; ++i) { // from tower 0 to tower n
+		int z; cin >> z; // store tower height
+		int lo = 0, hi = sz(x); //int low =0 , int high= size
+		while (lo < hi) { //low <high
+			int mid = (lo + hi) / 2; //divide 2
+			if (x[mid] > z) hi = mid; //merge
+			else lo = mid + 1;
+		}
+		if (lo == sz(x)) x.pb(z); // create new tower
+		else x[lo] = z; // add to tower
+	}
+	cout << sz(x); // print how many tower , size
+}
+
+
